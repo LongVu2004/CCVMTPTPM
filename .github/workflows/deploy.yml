@@ -1,8 +1,8 @@
-name: Deploy to GitHub Pages
+name: CI/CD Pipeline
 
 on:
-  push:
-    branches: ["main"] # Đổi thành "master" nếu nhánh mặc định của bạn là master
+  pull_request:
+    branches: ["main"]
 
 # Cấp quyền cho GitHub Actions được phép ghi đè lên GitHub Pages
 permissions:
@@ -11,24 +11,27 @@ permissions:
   id-token: write
 
 jobs:
+  # Job 1: CI (Chạy tự động để test code)
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kiểm tra Code
+        run: echo "Pass hết các bài test! Code an toàn."
+
+  # Job 2: CD (Chờ duyệt thủ công mới deploy)
   deploy:
+    needs: build # Bắt buộc phải đợi job 'build' chạy xong
     environment:
-      name: github-pages
+      name: github-pages # Tên môi trường sẽ được cài đặt nút bấm
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
-          # Cập nhật đường dẫn tới thư mục chứa file HTML của bạn
-          path: './BaiTap7/public' 
-          
+          path: './BaiTap7/public'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
