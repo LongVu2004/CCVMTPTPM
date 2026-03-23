@@ -3,135 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CI/CD Demo - BaiTap7</title>
+    <title>CI/CD Pipeline - Pro Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="bg-glow blob-1"></div>
+    <div class="bg-glow blob-2"></div>
+
     <div class="container">
         <header>
+            <div class="header-badge">🚀 Version 1.0.0</div>
             <h1>CI/CD Pipeline Demo</h1>
-            <p class="subtitle">BaiTap7 - CCMTPTPM</p>
+            <p class="subtitle">BaiTap7 - Công Cụ & Môi Trường PTPM</p>
         </header>
 
         <main>
-            <section class="info-card">
-                <h2>Pipeline Status</h2>
+            <section class="info-card fade-in" style="animation-delay: 0.1s;">
+                <h2>Trạng Thái Hệ Thống</h2>
                 <div class="status-badge passed">
                     <span class="dot"></span>
-                    PASSED
+                    <span class="pulse-ring"></span>
+                    PASSED / LIVE
                 </div>
-                <p class="desc">Mỗi lần push code lên branch <code>main</code>, pipeline sẽ tự động chạy và deploy lên GitLab Pages.</p>
+                <p class="desc">Mỗi lần push code lên branch <code>main</code>, hệ thống CI/CD sẽ tự động kích hoạt, kiểm tra và triển khai bản cập nhật mới nhất lên GitLab/GitHub Pages với độ trễ gần như bằng 0.</p>
             </section>
 
-            <section class="info-card">
-                <h2>Khái niệm CI/CD</h2>
+            <section class="info-card fade-in" style="animation-delay: 0.2s;">
+                <h2>Kiến Trúc CI/CD</h2>
                 <div class="concept-grid">
                     <div class="concept-item">
-                        <h3>CI - Continuous Integration</h3>
-                        <p>Tự động build và test code mỗi khi có thay đổi. Giúp phát hiện lỗi sớm.</p>
+                        <div class="icon-wrapper">⚙️</div>
+                        <h3>Continuous Integration</h3>
+                        <p>Tự động hóa quá trình tích hợp mã nguồn.</p>
                         <ul>
-                            <li>Automatically build on every push</li>
-                            <li>Run automated tests</li>
-                            <li>Code quality checks</li>
+                            <li>Build source code tự động</li>
+                            <li>Chạy Unit/Integration Tests</li>
+                            <li>Kiểm tra chất lượng code (Linting)</li>
                         </ul>
                     </div>
                     <div class="concept-item">
-                        <h3>CD - Continuous Deployment</h3>
-                        <p>Tự động deploy phiên bản mới lên môi trường staging/production sau khi CI pass.</p>
+                        <div class="icon-wrapper">🚀</div>
+                        <h3>Continuous Deployment</h3>
+                        <p>Tự động hóa quy trình phân phối sản phẩm.</p>
                         <ul>
-                            <li>Automatic deployment to hosting</li>
-                            <li>Zero-downtime releases</li>
-                            <li>Rollback capabilities</li>
+                            <li>Deploy thẳng lên Production/Pages</li>
+                            <li>Không thời gian chết (Zero-downtime)</li>
+                            <li>Sẵn sàng Rollback khi có sự cố</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
-            <section class="info-card">
-                <h2>Các bước thực hiện</h2>
+            <section class="info-card fade-in" style="animation-delay: 0.3s;">
+                <h2>Quy Trình Hoạt Động (Workflow)</h2>
                 <ol class="step-list">
                     <li>
-                        <strong>Commit & Push</strong>
-                        <p>Developer push code lên GitLab repository.</p>
+                        <strong>Commit & Push Code</strong>
+                        <p>Developer đẩy mã nguồn mới lên Repository gốc.</p>
                     </li>
                     <li>
-                        <strong>Pipeline Triggered</strong>
-                        <p>GitLab CI tự động kích hoạt pipeline dựa trên <code>.gitlab-ci.yml</code>.</p>
+                        <strong>Trigger Pipeline</strong>
+                        <p>Hệ thống tự động đọc file cấu hình <code>.yml</code> và tạo phiên chạy mới.</p>
                     </li>
                     <li>
-                        <strong>Run Jobs</strong>
-                        <p>Runner thực thi các jobs: build, test, deploy theo thứ tự stages.</p>
+                        <strong>Execute Jobs (Runner)</strong>
+                        <p>Các máy chủ ảo (Runner) nhận lệnh và thực thi tuần tự các stage: Build ➔ Test ➔ Deploy.</p>
                     </li>
                     <li>
-                        <strong>Deploy to Pages</strong>
-                        <p>Nếu tất cả jobs thành công, artifacts được deploy lên GitLab Pages.</p>
-                    </li>
-                    <li>
-                        <strong>Live Site</strong>
-                        <p>Website được cập nhật tự động tại URL: <code>https://[username].gitlab.io/[project-name]/</code></p>
+                        <strong>Publish Artifacts</strong>
+                        <p>Sản phẩm đã biên dịch được đóng gói và đẩy lên môi trường Hosting tĩnh (Pages).</p>
                     </li>
                 </ol>
             </section>
 
-            <section class="info-card">
-                <h2>Truy cập CI/CD Pipeline</h2>
-                <div class="access-guide">
-                    <div class="access-item">
-                        <span class="label">Xem Pipeline:</span>
-                        <code>Repository → CI/CD → Pipelines</code>
-                    </div>
-                    <div class="access-item">
-                        <span class="label">Xem Jobs:</span>
-                        <code>Repository → CI/CD → Jobs</code>
-                    </div>
-                    <div class="access-item">
-                        <span class="label">Xem Pipeline Editor:</span>
-                        <code>Repository → CI/CD → Editor</code>
-                    </div>
-                </div>
-            </section>
-
-            <section class="info-card">
-                <h2>GitLab CI/CD Concepts</h2>
+            <section class="info-card fade-in" style="animation-delay: 0.4s;">
+                <h2>Thuật Ngữ Cốt Lõi</h2>
                 <div class="concepts-table">
                     <div class="concept-row">
                         <span class="term">.gitlab-ci.yml</span>
-                        <span class="definition">File cấu hình pipeline bằng YAML, đặt ở root của repository.</span>
+                        <span class="definition">File "bộ não" điều khiển toàn bộ kịch bản CI/CD.</span>
                     </div>
                     <div class="concept-row">
                         <span class="term">Pipeline</span>
-                        <span class="definition">Tập hợp các jobs được chạy theo thứ tự stages.</span>
+                        <span class="definition">Chuỗi dây chuyền sản xuất tự động gồm nhiều công đoạn.</span>
                     </div>
                     <div class="concept-row">
-                        <span class="term">Stage</span>
-                        <span class="definition">Nhóm các jobs chạy cùng lúc (VD: build, test, deploy).</span>
+                        <span class="term">Stage / Job</span>
+                        <span class="definition">Nhóm nhiệm vụ (Stage) và các tác vụ chi tiết (Job) bên trong.</span>
                     </div>
                     <div class="concept-row">
-                        <span class="term">Job</span>
-                        <span class="definition">Đơn vị nhỏ nhất trong pipeline, chứa các lệnh script thực thi.</span>
-                    </div>
-                    <div class="concept-row">
-                        <span class="term">Runner</span>
-                        <span class="definition">Server thực thi các jobs. GitLab.com cung cấp shared runners miễn phí.</span>
-                    </div>
-                    <div class="concept-row">
-                        <span class="term">Artifacts</span>
-                        <span class="definition">Các file được tạo ra bởi jobs, có thể chia sẻ giữa các stages/jobs.</span>
+                        <span class="term">Shared Runner</span>
+                        <span class="definition">Máy chủ do hệ thống cung cấp miễn phí để chạy script.</span>
                     </div>
                 </div>
             </section>
 
-            <section class="info-card timestamp-section">
-                <h2>Thông tin Deploy</h2>
+            <section class="info-card timestamp-section fade-in" style="animation-delay: 0.5s;">
+                <h2>Dấu Vết Triển Khai (Deployment Log)</h2>
                 <div class="timestamp-info">
-                    <p>Last updated: <span id="timestamp">-</span></p>
-                    <p>Commit: <span id="commit-hash">-</span></p>
+                    <div class="log-item">
+                        <span class="log-label">Last Updated:</span>
+                        <span id="timestamp" class="log-value highlight">-</span>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-label">Commit Hash:</span>
+                        <span id="commit-hash" class="log-value">-</span>
+                    </div>
+                    <div class="log-item">
+                        <span class="log-label">Environment:</span>
+                        <span class="log-value text-success">Production (Pages)</span>
+                    </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>BaiTap7 - Continuous Integration &amp; Continuous Deployment</p>
+            <p>Phát triển bởi <strong>Phạm Long Vũ</strong> • CC&MTPTPM</p>
         </footer>
     </div>
 
