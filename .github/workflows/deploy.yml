@@ -3,6 +3,8 @@ name: CI/CD Pipeline
 on:
   pull_request:
     branches: ["main"]
+  push:
+    branches: ["main"] # Lệnh này giúp pipeline chạy tiếp sau khi merge
 
 # Cấp quyền cho GitHub Actions được phép ghi đè lên GitHub Pages
 permissions:
@@ -21,10 +23,12 @@ jobs:
 
   # Job 2: CD (Chờ duyệt thủ công mới deploy)
   deploy:
-    needs: build # Bắt buộc phải đợi job 'build' chạy xong
+    needs: build
     environment:
-      name: github-pages # Tên môi trường sẽ được cài đặt nút bấm
+      name: production-pages # Tên môi trường đòi hỏi người duyệt (bạn đã setup lúc nãy)
       url: ${{ steps.deployment.outputs.page_url }}
+    # ĐIỂM QUAN TRỌNG: Chỉ cho phép deploy nút bấm khi code đã gộp vào main
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
